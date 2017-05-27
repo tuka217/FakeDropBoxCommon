@@ -1,4 +1,4 @@
-package org.awalasek.FakeDropBox.common;
+package org.awalasek.fakedropbox.common;
 
 public enum ChangeType {
     CREATE("CREATE"), MODIFY("MODIFY"), REMOVE("REMOVE");
