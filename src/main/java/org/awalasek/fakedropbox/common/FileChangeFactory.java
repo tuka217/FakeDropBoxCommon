@@ -10,12 +10,13 @@ import org.awalasek.fakedropbox.common.RemoveFileChange;
 import org.awalasek.fakedropbox.common.ModifyFileChange;
 
 public class FileChangeFactory {
-    
+
     private String username;
 
     public FileChangeFactory() {
         this.username = null;
     }
+
     public FileChangeFactory(String username) {
         this.username = username;
     }
@@ -36,12 +37,12 @@ public class FileChangeFactory {
 
         return null;
     }
-    
+
     public FileChange getFileChange(HttpServletRequest request) {
         if (request == null) {
             return null;
         }
-        
+
         String username = request.getParameter("username");
         String filename = request.getParameter("filename");
         ChangeType changeType = ChangeType.valueOf(request.getParameter("changeType"));
@@ -57,7 +58,22 @@ public class FileChangeFactory {
 
         return null;
     }
-    
-    
+
+    public FileChange getFileChange(String username, Path filename, ChangeType changeType) {
+        if (username == null || filename == null || changeType == null) {
+            return null;
+        }
+
+        switch (changeType) {
+        case CREATE:
+            return new CreateFileChange(username, filename.toString());
+        case MODIFY:
+            return new ModifyFileChange(username, filename.toString());
+        case REMOVE:
+            return new RemoveFileChange(username, filename.toString());
+        }
+
+        return null;
+    }
 
 }

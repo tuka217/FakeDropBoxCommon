@@ -7,6 +7,7 @@ abstract class AbstractFileChange implements FileChange {
     private ChangeType changeType;
 
     protected AbstractFileChange(String username, String filePath, ChangeType changeType) {
+        this.username = username;
         this.filePath = filePath;
         this.changeType = changeType;
     }
