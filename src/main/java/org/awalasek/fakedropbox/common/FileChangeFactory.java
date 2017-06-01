@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.awalasek.fakedropbox.common.CreateFileChange;
 import org.awalasek.fakedropbox.common.RemoveFileChange;
-import org.awalasek.fakedropbox.common.ModifyFileChange;
 
 public class FileChangeFactory {
 
@@ -29,8 +28,6 @@ public class FileChangeFactory {
         switch (eventKind.name()) {
         case "ENTRY_CREATE":
             return new CreateFileChange(username, child.toString());
-        case "ENTRY_MODIFY":
-            return new ModifyFileChange(username, child.toString());
         case "ENTRY_DELETE":
             return new RemoveFileChange(username, child.toString());
         }
@@ -50,8 +47,6 @@ public class FileChangeFactory {
         switch (changeType) {
         case CREATE:
             return new CreateFileChange(username, filename);
-        case MODIFY:
-            return new ModifyFileChange(username, filename);
         case REMOVE:
             return new RemoveFileChange(username, filename);
         }
@@ -67,8 +62,6 @@ public class FileChangeFactory {
         switch (changeType) {
         case CREATE:
             return new CreateFileChange(username, filename.toString());
-        case MODIFY:
-            return new ModifyFileChange(username, filename.toString());
         case REMOVE:
             return new RemoveFileChange(username, filename.toString());
         }
